@@ -38,6 +38,8 @@ config_names = {'Position only','Pos + Vel','Double Pos + Vel'};
 %% Preallocate RMSE results
 avg_rmse_px = zeros(length(accels), length(configs));
 avg_rmse_py = zeros(length(accels), length(configs));
+avg_rmse_vx = zeros(length(accels), length(configs));
+avg_rmse_vy = zeros(length(accels), length(configs));
 
 %% Loop over accelerations and measurement configurations
 for a_idx = 1:length(accels)
@@ -53,6 +55,8 @@ for a_idx = 1:length(accels)
         cfg = configs(cfg_idx);
         rmse_px_all = zeros(1,numRuns);
         rmse_py_all = zeros(1,numRuns);
+        rmse_vx_all = zeros(1,numRuns);
+        rmse_vy_all = zeros(1,numRuns);
        
         for run = 1:numRuns
             %% Generate noisy measurements
@@ -102,11 +106,15 @@ for a_idx = 1:length(accels)
             %% Compute RMSE
             rmse_px_all(run) = sqrt(mean((x_est(1,:) - px_true).^2));
             rmse_py_all(run) = sqrt(mean((x_est(3,:) - py_true).^2));
+            rmse_vx_all(run) = sqrt(mean((x_est(2,:) - vx_true).^2));
+            rmse_vy_all(run) = sqrt(mean((x_est(4,:) - vy_true).^2));
         end
        
         %% Store average RMSE
         avg_rmse_px(a_idx,cfg_idx) = mean(rmse_px_all);
         avg_rmse_py(a_idx,cfg_idx) = mean(rmse_py_all);
+        avg_rmse_vx(a_idx,cfg_idx) = mean(rmse_vx_all);
+        avg_rmse_vy(a_idx,cfg_idx) = mean(rmse_vy_all);
 
         %% ---- Visualization for this configuration ----
         figure('Name',sprintf('Kalman Filter: %s (ax=%.1f)', config_names{cfg_idx}, ax),...
@@ -155,8 +163,9 @@ results = table;
 for a_idx = 1:length(accels)
     for cfg_idx = 1:length(configs)
         results = [results; {accels(a_idx), config_names{cfg_idx}, ...
-            avg_rmse_px(a_idx,cfg_idx), avg_rmse_py(a_idx,cfg_idx)}];
+            avg_rmse_px(a_idx,cfg_idx), avg_rmse_py(a_idx,cfg_idx), ...
+            avg_rmse_vx(a_idx,cfg_idx), avg_rmse_vy(a_idx,cfg_idx)}];
     end
 end
-results.Properties.VariableNames = {'Horizontal Acceleration (m/s^2)','Configuration','Avg_RMSE_px','Avg_RMSE_py'};
+results.Properties.VariableNames = {'Horizontal Acceleration (m/s^2)','Configuration','Avg_RMSE_px','Avg_RMSE_py','Avg_RMSE_vx','Avg_RMSE_vy'};
 disp(results);
