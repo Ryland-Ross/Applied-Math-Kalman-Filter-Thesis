@@ -5,10 +5,11 @@ The goal of my thesis was to investigate state estimation techniques, analyzing 
 
 The repository includes:
 
-- Multiple **1D Kalman Filter implementations**, from simple single-sensor filters to advanced multi-sensor configurations.  
+- Multiple **1D, 2D, and 3D Kalman Filter implementations**, from simple single-sensor filters to advanced multi-sensor configurations.  
 - Scripts for testing **RMSE performance** across multiple runs.  
 - Experiments with varying sensor noise, multiple measurement sources, and velocity estimation.  
-- Well-commented MATLAB code that demonstrates both theoretical and practical aspects of the filters.  
+- Well-commented MATLAB code that demonstrates both theoretical and practical aspects of the filters.
+- A 2D ExtendedKalman Filter Implementation and comparison
 
 All scripts are standalone and can be run independently to reproduce the results of my thesis experiments.  
 
