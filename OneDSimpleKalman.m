@@ -8,10 +8,10 @@
 % 0.2 m/s^2.
 
 % Goal: Estimate the position and velocity of the car at every time step,
-% and compute the average RMSE of both position and velocity across 10 runs.
+% and compute the average RMSE of both position and velocity across 100 runs.
 
 %% Initialize parameters
-clc; clear; close all;  % clear workspace, command window, and close all plots
+clc; clear; close all; 
 
 dt = 0.01; % sensor time step (s)
 T = 30;    % total simulation time (s)
@@ -31,7 +31,7 @@ v_true = v0 + a_true*t;               % velocity over time
 sigma_meas = 0.5; % measurement noise standard deviation (m)
 
 %% Monte Carlo: Run filter multiple times to average RMSE
-numRuns = 10;                % number of independent runs
+numRuns = 100;                % number of independent runs
 rmse_pos_all = zeros(1,numRuns); % store RMSE for position
 rmse_vel_all = zeros(1,numRuns); % store RMSE for velocity
 
