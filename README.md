@@ -3,14 +3,19 @@
 This repository contains my work exploring **Kalman Filters** as part of my **Applied Mathematics senior thesis** at Colgate University.  
 The goal of my thesis was to investigate state estimation techniques, analyzing how Kalman Filters can accurately estimate position and velocity from noisy sensor measurements.  
 
-The repository includes:
+## Repository Contents
 
-- Multiple **1D, 2D, and 3D Kalman Filter implementations**, from simple single-sensor filters to advanced multi-sensor configurations.  
-- Scripts for testing **RMSE performance** across multiple runs.  
-- Experiments with varying sensor noise, multiple measurement sources, and velocity estimation.  
-- Well-commented MATLAB code that demonstrates both theoretical and practical aspects of the filters.
-- A 2D ExtendedKalman Filter Implementation and comparison
+- **1D, 2D, and 3D Kalman Filter implementations**  
+  - Includes single-sensor and multi-sensor configurations  
+  - Demonstrates the effect of varying process and measurement noise (Q/R analysis)  
+  - Scripts for analyzing RMSE performance across multiple runs  
 
-All scripts are standalone and can be run independently to reproduce the results of my thesis experiments.  
+- **2D Extended Kalman Filter (EKF)**  
+  - Handles nonlinear dynamics such as air resistance in projectile motion  
+  - Comparison against linear KF performance  
 
----
+- **2D Unscented Kalman Filter (UKF)**  
+  - Uses sigma points to approximate nonlinear transformations  
+  - Tested against EKF and KF using Monte Carlo simulations  
+
+All scripts are standalone and can be run independently to reproduce the results presented in my thesis experiments.
